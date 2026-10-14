@@ -2,7 +2,7 @@ English | [中文版](./nps-rust.nop.cn.md)
 
 # `nps-nop` — Reference
 
-> Spec: [NPS-5 NOP v0.6](https://github.com/labacacia/NPS-Release/blob/main/spec/NPS-5-NOP.md)
+> Spec: [NPS-5 NOP v0.6](https://github.com/labacacia/NPS/blob/main/spec/NPS-5-NOP.md)
 
 Orchestration layer — DAG submission, fan-in barriers, streaming
 progress, async status polling.

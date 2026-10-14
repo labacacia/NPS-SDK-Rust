@@ -2,7 +2,7 @@ English | [中文版](./nps-rust.ndp.cn.md)
 
 # `nps-ndp` — Reference
 
-> Spec: [NPS-4 NDP v0.8](https://github.com/labacacia/NPS-Release/blob/main/spec/NPS-4-NDP.md)
+> Spec: [NPS-4 NDP v0.8](https://github.com/labacacia/NPS/blob/main/spec/NPS-4-NDP.md)
 
 Discovery layer — the NPS analogue of DNS. Three frames, an in-memory
 TTL registry, and a signature validator.
@@ -80,7 +80,7 @@ pub struct GraphFrame {
 ```
 
 Gaps in `seq` trigger a re-sync request signalled with
-`NDP-GRAPH-SEQ-GAP` (see [`error-codes.md`](https://github.com/labacacia/NPS-Release/blob/main/spec/error-codes.md)).
+`NDP-GRAPH-SEQ-GAP` (see [`error-codes.md`](https://github.com/labacacia/NPS/blob/main/spec/error-codes.md)).
 
 ---
 

@@ -25,7 +25,7 @@ docker compose up -d
 
 ## API
 
-Same endpoints as all other NIP CA Server implementations — see [NPS-3 §8](https://github.com/labacacia/NPS-Release/blob/main/spec/NPS-3-NIP.md).
+Same endpoints as all other NIP CA Server implementations — see [NPS-3 §8](https://github.com/labacacia/NPS/blob/main/spec/NPS-3-NIP.md).
 
 ## Local Development
 

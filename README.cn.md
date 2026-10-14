@@ -1,8 +1,8 @@
 [English Version](./README.md) | 中文版
 
 # NPS Rust SDK (`nps-rs`)
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](../../LICENSE)
-[![Release](https://img.shields.io/badge/release-v1.0.0--alpha.18-orange.svg)](../../CHANGELOG.cn.md)
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
+[![Release](https://img.shields.io/badge/release-v1.0.0--alpha.18-orange.svg)](CHANGELOG.cn.md)
 [![NCP](https://img.shields.io/badge/NCP-v0.11-5b8cff.svg)]()
 [![NWP](https://img.shields.io/badge/NWP-v0.21-4af0b0.svg)]()
 [![NIP](https://img.shields.io/badge/NIP-v0.14-7b61ff.svg)]()
@@ -31,7 +31,7 @@ Alpha.14 候选新增：远程 NIP CA 类型化客户端（`nps_nip::ca_client::
 - NDP 0.12 签名 Announce 准入及 registry 冲突/liveness 策略。
 - NOP 0.9 确定性编排、callback 安全、委派、租约与 CR-0007 runtime 决策。
 
-五个 Profile 均消费 [`spec/conformance`](../../spec/conformance/) 下的语言无关 fixture。
+五个 Profile 均消费 [`spec/conformance`](spec/conformance/) 下的语言无关 fixture。
 
 ### 早期新增（nps-nip）
 
