@@ -2,7 +2,7 @@ English | [中文版](./nps-rust.nip.cn.md)
 
 # `nps-nip` — Reference
 
-> Spec: [NPS-3 NIP v0.9](https://github.com/labacacia/NPS-Release/blob/main/spec/NPS-3-NIP.md)
+> Spec: [NPS-3 NIP v0.9](https://github.com/labacacia/NPS/blob/main/spec/NPS-3-NIP.md)
 
 Identity layer. Three frames + an Ed25519 helper with
 AES-256-GCM-encrypted on-disk persistence.

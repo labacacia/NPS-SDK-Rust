@@ -1,6 +1,7 @@
 // Copyright 2026 INNO LOTUS PTY LTD
 // SPDX-License-Identifier: Apache-2.0
 
+pub mod alpha20;
 pub mod cache;
 pub mod codec;
 pub mod error;

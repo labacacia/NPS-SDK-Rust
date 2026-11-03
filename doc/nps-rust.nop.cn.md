@@ -2,7 +2,7 @@
 
 # `nps-nop` — 参考
 
-> 规范：[NPS-5 NOP v0.6](https://github.com/labacacia/NPS-Release/blob/main/spec/NPS-5-NOP.md)
+> 规范：[NPS-5 NOP v0.6](https://github.com/labacacia/NPS/blob/main/spec/NPS-5-NOP.md)
 
 编排层 —— DAG 提交、fan-in 屏障、流式进度、异步状态轮询。
 

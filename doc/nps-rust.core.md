@@ -2,7 +2,7 @@ English | [中文版](./nps-rust.core.cn.md)
 
 # `nps-core` — Reference
 
-> Spec: [NPS-1 NCP v0.7](https://github.com/labacacia/NPS-Release/blob/main/spec/NPS-1-NCP.md)
+> Spec: [NPS-1 NCP v0.7](https://github.com/labacacia/NPS/blob/main/spec/NPS-1-NCP.md)
 
 Foundation crate. Defines the wire header, encoding tiers, a
 registry-validated codec, the anchor-frame cache, and the `NpsError`

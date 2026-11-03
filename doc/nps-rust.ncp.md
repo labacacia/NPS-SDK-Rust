@@ -2,7 +2,7 @@ English | [中文版](./nps-rust.ncp.cn.md)
 
 # `nps-ncp` — Reference
 
-> Spec: [NPS-1 NCP v0.7](https://github.com/labacacia/NPS-Release/blob/main/spec/NPS-1-NCP.md)
+> Spec: [NPS-1 NCP v0.7](https://github.com/labacacia/NPS/blob/main/spec/NPS-1-NCP.md)
 
 The five NCP frame types. Every struct exposes the same trio:
 
@@ -124,7 +124,7 @@ pub struct ErrorFrame {
 }
 ```
 
-See [`error-codes.md`](https://github.com/labacacia/NPS-Release/blob/main/spec/error-codes.md)
+See [`error-codes.md`](https://github.com/labacacia/NPS/blob/main/spec/error-codes.md)
 for the namespace.
 
 ---

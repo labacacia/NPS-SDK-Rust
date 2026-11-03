@@ -140,11 +140,11 @@ let back = AnchorFrame::from_dict(&dict)?;
 
 ## 规范链接
 
-- [NPS-0 Overview](https://github.com/labacacia/NPS-Release/blob/main/spec/NPS-0-Overview.cn.md)
-- [NPS-1 NCP](https://github.com/labacacia/NPS-Release/blob/main/spec/NPS-1-NCP.cn.md)
-- [NPS-2 NWP](https://github.com/labacacia/NPS-Release/blob/main/spec/NPS-2-NWP.cn.md)
-- [NPS-3 NIP](https://github.com/labacacia/NPS-Release/blob/main/spec/NPS-3-NIP.cn.md)
-- [NPS-4 NDP](https://github.com/labacacia/NPS-Release/blob/main/spec/NPS-4-NDP.cn.md)
-- [NPS-5 NOP](https://github.com/labacacia/NPS-Release/blob/main/spec/NPS-5-NOP.cn.md)
-- [帧注册表](https://github.com/labacacia/NPS-Release/blob/main/spec/frame-registry.yaml)
-- [错误码](https://github.com/labacacia/NPS-Release/blob/main/spec/error-codes.cn.md)
+- [NPS-0 Overview](https://github.com/labacacia/NPS/blob/main/spec/NPS-0-Overview.cn.md)
+- [NPS-1 NCP](https://github.com/labacacia/NPS/blob/main/spec/NPS-1-NCP.cn.md)
+- [NPS-2 NWP](https://github.com/labacacia/NPS/blob/main/spec/NPS-2-NWP.cn.md)
+- [NPS-3 NIP](https://github.com/labacacia/NPS/blob/main/spec/NPS-3-NIP.cn.md)
+- [NPS-4 NDP](https://github.com/labacacia/NPS/blob/main/spec/NPS-4-NDP.cn.md)
+- [NPS-5 NOP](https://github.com/labacacia/NPS/blob/main/spec/NPS-5-NOP.cn.md)
+- [帧注册表](https://github.com/labacacia/NPS/blob/main/spec/frame-registry.yaml)
+- [错误码](https://github.com/labacacia/NPS/blob/main/spec/error-codes.cn.md)

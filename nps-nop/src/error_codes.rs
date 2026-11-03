@@ -56,8 +56,43 @@ pub const AGGREGATION_INVALID: &str = "NOP-AGGREGATION-INVALID";
 // ── Mapping to NPS status ──────────────────────────────────────────────────────
 
 /// Map a NOP error code to the corresponding NPS status code.
+pub const EXECUTION_INDETERMINATE: &str = "NOP-EXECUTION-INDETERMINATE";
+
+#[cfg(test)]
+mod alpha20_status_tests {
+    #[test]
+    fn shared_alpha20_mappings() {
+        let fixture = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+            .ancestors()
+            .map(|root| root.join("spec/conformance/alpha20/error_status_vectors.json"))
+            .find(|path| path.is_file())
+            .expect("shared error corpus must be distributed with the SDK");
+        let raw = std::fs::read_to_string(fixture).unwrap();
+        let corpus: serde_json::Value = serde_json::from_str(&raw).unwrap();
+        let cases = corpus["cases"].as_array().unwrap();
+        assert_eq!(cases.len(), 17);
+        let mut checked = 0;
+        for vector in cases {
+            let code = vector["code"].as_str().unwrap();
+            if !code.starts_with("NOP-") {
+                continue;
+            }
+            let status = super::to_nps_status(code);
+            assert_eq!(status, vector["status"].as_str().unwrap(), "{code}");
+            assert_eq!(
+                nps_core::status_codes::to_http_status(status),
+                Some(vector["http"].as_u64().unwrap() as u16),
+                "{code}"
+            );
+            checked += 1;
+        }
+        assert_eq!(checked, 1);
+    }
+}
+
 pub fn to_nps_status(code: &str) -> &'static str {
     match code {
+        EXECUTION_INDETERMINATE => "NPS-SERVER-INTERNAL",
         TASK_NOT_FOUND => "NPS-CLIENT-NOT-FOUND",
         TASK_TIMEOUT => "NPS-SERVER-TIMEOUT",
         TASK_DAG_INVALID => "NPS-CLIENT-BAD-FRAME",

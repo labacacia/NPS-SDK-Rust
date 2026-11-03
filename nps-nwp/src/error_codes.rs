@@ -120,8 +120,57 @@ pub const BRIDGE_SERVER_DISPATCH_FAILED: &str = "NWP-BRIDGE-SERVER-DISPATCH-FAIL
 // ── Mapping to NPS status ──────────────────────────────────────────────────────
 
 /// Map a NWP error code to the corresponding NPS status code.
+pub const CHALLENGE_INVALID: &str = "NWP-CHALLENGE-INVALID";
+pub const CHALLENGE_NOT_FOUND: &str = "NWP-CHALLENGE-NOT-FOUND";
+pub const CHALLENGE_BINDING_CONFLICT: &str = "NWP-CHALLENGE-BINDING-CONFLICT";
+pub const CHALLENGE_NOT_APPROVED: &str = "NWP-CHALLENGE-NOT-APPROVED";
+pub const CHALLENGE_EXPIRED: &str = "NWP-CHALLENGE-EXPIRED";
+pub const CHALLENGE_STATE_UNAVAILABLE: &str = "NWP-CHALLENGE-STATE-UNAVAILABLE";
+pub const FEATURE_REQUIREMENTS_INVALID: &str = "NWP-FEATURE-REQUIREMENTS-INVALID";
+pub const FEATURE_REQUIRED_UNSUPPORTED: &str = "NWP-FEATURE-REQUIRED-UNSUPPORTED";
+
+#[cfg(test)]
+mod alpha20_status_tests {
+    #[test]
+    fn shared_alpha20_mappings() {
+        let fixture = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+            .ancestors()
+            .map(|root| root.join("spec/conformance/alpha20/error_status_vectors.json"))
+            .find(|path| path.is_file())
+            .expect("shared error corpus must be distributed with the SDK");
+        let raw = std::fs::read_to_string(fixture).unwrap();
+        let corpus: serde_json::Value = serde_json::from_str(&raw).unwrap();
+        let cases = corpus["cases"].as_array().unwrap();
+        assert_eq!(cases.len(), 17);
+        let mut checked = 0;
+        for vector in cases {
+            let code = vector["code"].as_str().unwrap();
+            if !code.starts_with("NWP-") {
+                continue;
+            }
+            let status = super::to_nps_status(code);
+            assert_eq!(status, vector["status"].as_str().unwrap(), "{code}");
+            assert_eq!(
+                nps_core::status_codes::to_http_status(status),
+                Some(vector["http"].as_u64().unwrap() as u16),
+                "{code}"
+            );
+            checked += 1;
+        }
+        assert_eq!(checked, 8);
+    }
+}
+
 pub fn to_nps_status(code: &str) -> &'static str {
     match code {
+        CHALLENGE_INVALID => "NPS-CLIENT-BAD-FRAME",
+        CHALLENGE_NOT_FOUND => "NPS-CLIENT-NOT-FOUND",
+        CHALLENGE_BINDING_CONFLICT => "NPS-CLIENT-CONFLICT",
+        CHALLENGE_NOT_APPROVED => "NPS-CLIENT-CONFLICT",
+        CHALLENGE_EXPIRED => "NPS-CLIENT-CONFLICT",
+        CHALLENGE_STATE_UNAVAILABLE => "NPS-SERVER-UNAVAILABLE",
+        FEATURE_REQUIREMENTS_INVALID => "NPS-CLIENT-BAD-FRAME",
+        FEATURE_REQUIRED_UNSUPPORTED => "NPS-CLIENT-CONFLICT",
         AUTH_NID_SCOPE_VIOLATION => "NPS-AUTH-FORBIDDEN",
         AUTH_NID_EXPIRED => "NPS-AUTH-UNAUTHENTICATED",
         AUTH_NID_REVOKED => "NPS-AUTH-UNAUTHENTICATED",
