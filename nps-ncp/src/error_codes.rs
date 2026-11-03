@@ -52,8 +52,45 @@ pub const NID_MISMATCH: &str = "NCP-NID-MISMATCH";
 ///
 /// Returns `"NPS-SERVER-INTERNAL"` for any unrecognised code so callers always
 /// get a valid status string.
+pub const FEATURE_NEGOTIATION_INVALID: &str = "NCP-FEATURE-NEGOTIATION-INVALID";
+pub const FEATURE_REQUIRED_UNSUPPORTED: &str = "NCP-FEATURE-REQUIRED-UNSUPPORTED";
+
+#[cfg(test)]
+mod alpha20_status_tests {
+    #[test]
+    fn shared_alpha20_mappings() {
+        let fixture = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+            .ancestors()
+            .map(|root| root.join("spec/conformance/alpha20/error_status_vectors.json"))
+            .find(|path| path.is_file())
+            .expect("shared error corpus must be distributed with the SDK");
+        let raw = std::fs::read_to_string(fixture).unwrap();
+        let corpus: serde_json::Value = serde_json::from_str(&raw).unwrap();
+        let cases = corpus["cases"].as_array().unwrap();
+        assert_eq!(cases.len(), 17);
+        let mut checked = 0;
+        for vector in cases {
+            let code = vector["code"].as_str().unwrap();
+            if !code.starts_with("NCP-") {
+                continue;
+            }
+            let status = super::to_nps_status(code);
+            assert_eq!(status, vector["status"].as_str().unwrap(), "{code}");
+            assert_eq!(
+                nps_core::status_codes::to_http_status(status),
+                Some(vector["http"].as_u64().unwrap() as u16),
+                "{code}"
+            );
+            checked += 1;
+        }
+        assert_eq!(checked, 2);
+    }
+}
+
 pub fn to_nps_status(code: &str) -> &'static str {
     match code {
+        FEATURE_NEGOTIATION_INVALID => "NPS-CLIENT-BAD-FRAME",
+        FEATURE_REQUIRED_UNSUPPORTED => "NPS-CLIENT-CONFLICT",
         ANCHOR_NOT_FOUND => "NPS-CLIENT-NOT-FOUND",
         ANCHOR_SCHEMA_INVALID => "NPS-CLIENT-BAD-FRAME",
         ANCHOR_ID_MISMATCH => "NPS-CLIENT-CONFLICT",

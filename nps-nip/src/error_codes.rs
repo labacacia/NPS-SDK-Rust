@@ -83,8 +83,53 @@ pub const CERT_CAPABILITIES_EXCEEDED: &str = "NIP-CERT-CAPABILITIES-EXCEEDED";
 // ── Mapping to NPS status ──────────────────────────────────────────────────────
 
 /// Map a NIP error code to the corresponding NPS status code.
+pub const CONTEXT_INVALID: &str = "NIP-CONTEXT-INVALID";
+pub const CONTEXT_UNTRUSTED: &str = "NIP-CONTEXT-UNTRUSTED";
+pub const CONTEXT_BINDING_MISMATCH: &str = "NIP-CONTEXT-BINDING-MISMATCH";
+pub const CONTEXT_EXPIRED: &str = "NIP-CONTEXT-EXPIRED";
+pub const CONTEXT_REPLAY: &str = "NIP-CONTEXT-REPLAY";
+pub const CONTEXT_VERIFIER_UNAVAILABLE: &str = "NIP-CONTEXT-VERIFIER-UNAVAILABLE";
+
+#[cfg(test)]
+mod alpha20_status_tests {
+    #[test]
+    fn shared_alpha20_mappings() {
+        let fixture = std::path::Path::new(env!("CARGO_MANIFEST_DIR"))
+            .ancestors()
+            .map(|root| root.join("spec/conformance/alpha20/error_status_vectors.json"))
+            .find(|path| path.is_file())
+            .expect("shared error corpus must be distributed with the SDK");
+        let raw = std::fs::read_to_string(fixture).unwrap();
+        let corpus: serde_json::Value = serde_json::from_str(&raw).unwrap();
+        let cases = corpus["cases"].as_array().unwrap();
+        assert_eq!(cases.len(), 17);
+        let mut checked = 0;
+        for vector in cases {
+            let code = vector["code"].as_str().unwrap();
+            if !code.starts_with("NIP-") {
+                continue;
+            }
+            let status = super::to_nps_status(code);
+            assert_eq!(status, vector["status"].as_str().unwrap(), "{code}");
+            assert_eq!(
+                nps_core::status_codes::to_http_status(status),
+                Some(vector["http"].as_u64().unwrap() as u16),
+                "{code}"
+            );
+            checked += 1;
+        }
+        assert_eq!(checked, 6);
+    }
+}
+
 pub fn to_nps_status(code: &str) -> &'static str {
     match code {
+        CONTEXT_INVALID => "NPS-CLIENT-BAD-FRAME",
+        CONTEXT_UNTRUSTED => "NPS-AUTH-FORBIDDEN",
+        CONTEXT_BINDING_MISMATCH => "NPS-AUTH-FORBIDDEN",
+        CONTEXT_EXPIRED => "NPS-AUTH-FORBIDDEN",
+        CONTEXT_REPLAY => "NPS-CLIENT-CONFLICT",
+        CONTEXT_VERIFIER_UNAVAILABLE => "NPS-SERVER-UNAVAILABLE",
         // Cert verification
         CERT_EXPIRED => "NPS-AUTH-UNAUTHENTICATED",
         CERT_REVOKED => "NPS-AUTH-UNAUTHENTICATED",

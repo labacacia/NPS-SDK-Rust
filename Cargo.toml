@@ -12,7 +12,7 @@ members = [
 resolver = "2"
 
 [workspace.package]
-version     = "1.0.0-alpha.19"
+version     = "1.0.0-alpha.20"
 edition     = "2021"
 license     = "Apache-2.0"
 authors     = ["Ori Lynn <iamzerolin@gmail.com>"]
@@ -55,10 +55,10 @@ time           = { version = "0.3",     default-features = false }
 tempfile       = { version = "3" }
 
 # Internal crates
-nps-core       = { path = "nps-core", version = "=1.0.0-alpha.19" }
-nps-ncp        = { path = "nps-ncp",  version = "=1.0.0-alpha.19" }
-nps-nwp        = { path = "nps-nwp",  version = "=1.0.0-alpha.19" }
-nps-nip        = { path = "nps-nip",  version = "=1.0.0-alpha.19" }
-nps-ndp        = { path = "nps-ndp",  version = "=1.0.0-alpha.19" }
-nps-nop        = { path = "nps-nop",  version = "=1.0.0-alpha.19" }
-nps-conformance = { path = "nps-conformance", version = "=1.0.0-alpha.19" }
+nps-core       = { path = "nps-core", version = "=1.0.0-alpha.20" }
+nps-ncp        = { path = "nps-ncp",  version = "=1.0.0-alpha.20" }
+nps-nwp        = { path = "nps-nwp",  version = "=1.0.0-alpha.20" }
+nps-nip        = { path = "nps-nip",  version = "=1.0.0-alpha.20" }
+nps-ndp        = { path = "nps-ndp",  version = "=1.0.0-alpha.20" }
+nps-nop        = { path = "nps-nop",  version = "=1.0.0-alpha.20" }
+nps-conformance = { path = "nps-conformance", version = "=1.0.0-alpha.20" }
