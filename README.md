@@ -2,9 +2,11 @@ English | [中文版](./README.cn.md)
 
 # NPS Rust SDK (`nps-rs`)
 
-> First time here? Start with [START-HERE.md](START-HERE.md) for architecture, security, and review guidance.
-[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
-[![Release](https://img.shields.io/badge/release-v1.0.0--alpha.18-orange.svg)](CHANGELOG.md)
+> alpha.20 candidate, unpublished. Six-SDK helper contracts and qualified runtime
+> paths differ; full production/cross-SDK runtime parity is not qualified.
+
+[![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/labacacia/NPS/blob/main/LICENSE)
+[![Release](https://img.shields.io/badge/candidate-v1.0.0--alpha.20-orange.svg)](CHANGELOG.md)
 [![NCP](https://img.shields.io/badge/NCP-v0.11-5b8cff.svg)]()
 [![NWP](https://img.shields.io/badge/NWP-v0.21-4af0b0.svg)]()
 [![NIP](https://img.shields.io/badge/NIP-v0.14-7b61ff.svg)]()
@@ -17,7 +19,7 @@ Crate group: `com.labacacia.nps` namespace | Rust edition 2021 | Cargo workspace
 
 ## Status
 
-**v1.0.0-alpha.19 release candidate — portable protocol conformance**
+**v1.0.0-alpha.20 release candidate — unpublished, bounded experimental support**
 
 Covers all five NPS protocols: NCP + NWP + NIP + NDP + NOP, plus **full NPS-RFC-0002 X.509 + ACME `agent-01` NID certificate primitives** (`nps_nip::x509` + `nps_nip::acme`).
 
@@ -35,7 +37,7 @@ Alpha.15 additions: typed remote NIP CA client (`nps_nip::ca_client::NipCaClient
   and CR-0007 runtime decisions.
 
 All five profiles consume the language-neutral fixtures under
-[`spec/conformance`](spec/conformance/).
+[`spec/conformance`](https://github.com/labacacia/NPS/blob/prep/alpha20-release-candidate/spec/conformance/).
 
 ### Earlier additions (nps-nip)
 
